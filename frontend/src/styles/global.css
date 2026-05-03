@@ -1,0 +1,252 @@
+/* ==========================================================================
+   global.css — 전역 스타일 시트
+   역할: 디자인 토큰(CSS 변수), 리셋, 공통 버튼/폼/유틸리티 클래스 정의
+   모든 컴포넌트에서 이 파일의 변수와 클래스를 재사용합니다.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. 디자인 토큰 (CSS Custom Properties)
+   한 곳에서 색상·간격·그림자를 수정하면 전체에 반영됩니다.
+   -------------------------------------------------------------------------- */
+:root {
+  /* 배경 */
+  --clr-bg: #f1f5f9;           /* 페이지 배경 (연한 슬레이트) */
+  --clr-surface: #ffffff;       /* 카드·입력란 배경 */
+  --clr-surface-hover: #f8fafc; /* 호버 시 카드 배경 */
+
+  /* 브랜드 컬러 (인디고 계열) */
+  --clr-primary: #6366f1;
+  --clr-primary-hover: #4f46e5;
+  --clr-primary-light: #eef2ff;
+  --clr-primary-shadow: rgba(99, 102, 241, 0.25);
+
+  /* 텍스트 */
+  --clr-text: #0f172a;          /* 본문 텍스트 */
+  --clr-text-secondary: #64748b;/* 부제목, 레이블 */
+  --clr-text-muted: #94a3b8;    /* 날짜, 메타 정보 */
+
+  /* 테두리 */
+  --clr-border: #e2e8f0;
+  --clr-border-hover: #c7d2fe;
+
+  /* 위험(삭제) */
+  --clr-danger: #ef4444;
+  --clr-danger-hover: #dc2626;
+  --clr-danger-bg: #fef2f2;
+
+  /* 간격 (8px 기준 배수) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-12: 48px;
+
+  /* 테두리 반경 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* 그림자 */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.10);
+  --shadow-primary: 0 4px 14px var(--clr-primary-shadow);
+
+  /* 애니메이션 */
+  --ease: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 기본 폰트 — 한글 지원 포함 시스템 폰트 스택 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR',
+    system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--clr-text);
+}
+
+/* --------------------------------------------------------------------------
+   2. CSS 리셋 — 브라우저 기본 스타일 초기화
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* padding/border를 width에 포함 */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--clr-bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased; /* macOS 폰트 렌더링 개선 */
+}
+
+/* --------------------------------------------------------------------------
+   3. 기본 링크
+   -------------------------------------------------------------------------- */
+a {
+  color: var(--clr-primary);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+a:hover {
+  color: var(--clr-primary-hover);
+}
+
+/* --------------------------------------------------------------------------
+   4. 버튼 시스템 — 변형(variant)별 스타일
+   .btn 을 기반으로 .btn-primary / .btn-secondary / .btn-danger 를 조합합니다.
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 9px 20px;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--ease);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* 클릭 시 살짝 눌리는 효과 */
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* 비활성화 상태 */
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn:disabled:active {
+  transform: none;
+}
+
+/* 작은 버튼 변형 */
+.btn-sm {
+  padding: 7px 16px;
+  font-size: 13px;
+}
+
+/* 채워진(filled) 주요 액션 버튼 */
+.btn-primary {
+  background: var(--clr-primary);
+  color: #fff;
+  border-color: var(--clr-primary);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--clr-primary-hover);
+  border-color: var(--clr-primary-hover);
+  box-shadow: var(--shadow-primary);
+}
+
+/* 외곽선(outlined) 보조 버튼 */
+.btn-secondary {
+  background: var(--clr-surface);
+  color: var(--clr-text);
+  border-color: var(--clr-border);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--clr-surface-hover);
+  border-color: #cbd5e1;
+}
+
+/* 삭제용 위험 버튼 */
+.btn-danger {
+  background: transparent;
+  color: var(--clr-danger);
+  border-color: var(--clr-danger);
+}
+.btn-danger:hover:not(:disabled) {
+  background: var(--clr-danger-bg);
+}
+
+/* --------------------------------------------------------------------------
+   5. 폼 요소 — 레이블·입력란·텍스트에어리어 공통 스타일
+   -------------------------------------------------------------------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--clr-text-secondary);
+}
+
+/* 텍스트 입력란 공통 */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--clr-text);
+  background: var(--clr-surface);
+  transition: border-color var(--ease), box-shadow var(--ease);
+  outline: none;
+}
+
+/* 포커스 시 인디고 링 */
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 3px var(--clr-primary-shadow);
+}
+
+.form-textarea {
+  resize: vertical;
+  line-height: 1.7;
+  min-height: 200px;
+}
+
+/* --------------------------------------------------------------------------
+   6. 알림 박스
+   -------------------------------------------------------------------------- */
+.alert-error {
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--clr-danger-bg);
+  color: var(--clr-danger);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   7. 공통 유틸리티
+   -------------------------------------------------------------------------- */
+
+/* 페이지 상단의 "← 돌아가기" 링크 */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: 14px;
+  color: var(--clr-text-secondary);
+  margin-bottom: var(--sp-6);
+  transition: color var(--ease);
+}
+.back-link:hover {
+  color: var(--clr-primary);
+  text-decoration: none;
+}
+
+/* 로딩 상태 텍스트 */
+.loading {
+  text-align: center;
+  color: var(--clr-text-muted);
+  padding: var(--sp-12) 0;
+  font-size: 15px;
+}

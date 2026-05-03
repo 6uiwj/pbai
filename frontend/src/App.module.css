@@ -1,0 +1,56 @@
+/* ==========================================================================
+   App.module.css — 앱 전체 레이아웃
+   헤더(상단 고정 네비게이션) + 메인 콘텐츠 영역 구조를 정의합니다.
+   ========================================================================== */
+
+/* 전체 화면을 차지하는 flex 컨테이너 */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 상단 고정 네비게이션 바 */
+.header {
+  background: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+  position: sticky; /* 스크롤해도 상단에 고정 */
+  top: 0;
+  z-index: 50;      /* 카드 hover 효과 위에 표시 */
+  box-shadow: var(--shadow-sm);
+}
+
+/* 헤더 내부 컨텐츠 — 최대 폭 제한 + 좌우 여백 */
+.headerInner {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 var(--sp-6);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 로고/브랜드명 */
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--clr-primary);
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.logo:hover {
+  color: var(--clr-primary-hover);
+  text-decoration: none;
+}
+
+/* 페이지별 콘텐츠가 들어가는 중앙 영역 */
+.main {
+  flex: 1; /* 남은 세로 공간을 모두 차지 */
+  max-width: 840px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--sp-8) var(--sp-6);
+}

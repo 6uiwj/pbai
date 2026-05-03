@@ -1,0 +1,86 @@
+/* ==========================================================================
+   PostCard.module.css — 게시글 목록 카드 스타일
+   ========================================================================== */
+
+/* Link 태그의 기본 스타일 제거 (카드 전체를 클릭 가능하게) */
+.link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 카드 컨테이너 — 기본 상태 */
+.card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-5) var(--sp-6);
+  margin-bottom: var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  transition: box-shadow var(--ease), transform var(--ease), border-color var(--ease);
+}
+
+/* 호버 시 카드가 살짝 떠오르는 효과 */
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--clr-border-hover);
+}
+
+/* 제목·메타 정보가 들어가는 본문 영역 */
+.body {
+  flex: 1;
+  min-width: 0; /* flex 자식 overflow 방지 */
+}
+
+/* 게시글 제목 */
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--clr-text);
+  line-height: 1.4;
+  margin-bottom: var(--sp-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 긴 제목은 "..." 처리 */
+  transition: color var(--ease);
+}
+
+/* 카드 호버 시 제목 색상 변경 */
+.link:hover .title {
+  color: var(--clr-primary);
+}
+
+/* 작성자·날짜 메타 정보 행 */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 13px;
+  color: var(--clr-text-muted);
+}
+
+/* 메타 정보 사이의 구분점 (·) */
+.dot {
+  width: 3px;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* 우측 화살표 아이콘 */
+.arrow {
+  color: var(--clr-text-muted);
+  flex-shrink: 0;
+  font-size: 16px;
+  transition: color var(--ease), transform var(--ease);
+}
+
+/* 호버 시 화살표가 오른쪽으로 살짝 이동 */
+.link:hover .arrow {
+  color: var(--clr-primary);
+  transform: translateX(4px);
+}

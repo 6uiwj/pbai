@@ -1,0 +1,33 @@
+# 환경변수 (절대 커밋 금지)
+.env
+*.key
+*.pem
+id_rsa
+credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Django
+*.log
+db.sqlite3
+media/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Docker
+.dockerignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store

@@ -1,0 +1,21 @@
+/* ==========================================================================
+   CreatePostPage.module.css — 게시글 작성 페이지 스타일
+   ========================================================================== */
+
+/* 페이지 제목 */
+.pageTitle {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--clr-text);
+  margin-bottom: var(--sp-6);
+}
+
+/* 폼을 감싸는 카드 */
+.card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-8);
+  box-shadow: var(--shadow-sm);
+}
